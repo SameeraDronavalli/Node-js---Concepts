@@ -1,41 +1,38 @@
-
 // Day-1: setup
-// installed node js
-// run  the terminal
-console.log("hello, this is first node program")
+console.log("hello, this is first node program");
 
-// Day 2 : frontend and backend mindset
-// Node.js runs JavaScript on the server
-// Backend handles logic, not UI
+// Day-2: frontend vs backend
 console.log("Frontend handles UI");
 console.log("Backend handles logic and data");
 
-//Day-3 & Day 4: npm & Packages
-//npm is a tool to download and manage libraries for Node.js.
-//using npm installed package.json  => It has Project details + dependencies list
-//Express allows us to easily create HTTP servers and define routes for handling client requests
+// Day-3 & Day-4: npm & Express
 const express = require("express");
 const app = express();
-app.get("/", (req, res) => {
-    res.send("Here is the response for the request")
-});
-app.listen(3000,()=>{
-    console.log("server started on port 3000")
-})
 
-//day 5:
-//Multiple Routes & req / res
-// Home route
+// Middleware for POST body
+app.use(express.json());
+
+// Day-4: Home route
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-// About route
+// Day-5: Multiple Routes
 app.get("/about", (req, res) => {
   res.send("About Page");
 });
 
-// Login route
 app.get("/login", (req, res) => {
   res.send("Login Page");
+});
+
+// Day-6: POST request
+app.post("/login", (req, res) => {
+  console.log(req.body);
+  res.send("Login successful");
+});
+
+// Server start (ALWAYS LAST)
+app.listen(3000, () => {
+  console.log("Server started on port 3000");
 });
