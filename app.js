@@ -22,3 +22,20 @@ app.get("/", (req, res) => {
 app.listen(3000,()=>{
     console.log("server started on port 3000")
 })
+
+//day 5:
+//Multiple Routes & req / res
+// Home route
+app.get("/", (req, res) => {
+  res.send("Home Page");
+});
+
+// About route
+app.get("/about", (req, res) => {
+  res.send("About Page");
+});
+
+// Login route
+app.get("/login", (req, res) => {
+  res.send("Login Page");
+});
