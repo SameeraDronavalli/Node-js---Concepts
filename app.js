@@ -32,7 +32,18 @@ app.post("/login", (req, res) => {
   res.send("Login successful");
 });
 
-// Server start (ALWAYS LAST)
+// Server start 
 app.listen(3000, () => {
   console.log("Server started on port 3000");
+});
+
+//Day7 :req.query used for search or filter purpose
+app.get("/search", (req, res) => {
+  console.log(req.query);
+  res.json(req.query);
+});
+//req.params mostly used for IDs
+app.get("/user/:id", (req, res) => {
+  console.log(req.params);
+  res.send(`User ID is ${req.params.id}`);
 });
