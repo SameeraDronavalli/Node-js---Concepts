@@ -5,7 +5,7 @@ console.log("hello, this is first node program");
 console.log("Frontend handles UI");
 console.log("Backend handles logic and data");
 
-// Day-3 & Day-4: npm & Express
+// Day-3 & Day-4: npm & Express (Importing express package and)
 const express = require("express");
 const app = express();
 
@@ -32,10 +32,7 @@ app.post("/login", (req, res) => {
   res.send("Login successful");
 });
 
-// Server start 
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
-});
+
 
 //Day7 :req.query used for search or filter purpose
 app.get("/search", (req, res) => {
@@ -46,4 +43,38 @@ app.get("/search", (req, res) => {
 app.get("/user/:id", (req, res) => {
   console.log(req.params);
   res.send(`User ID is ${req.params.id}`);
+});
+
+// Day-7: API route
+app.get("/api/user",(req,res)=>{
+  res.json({
+    name:"SAMEERA",
+    role:"FULLSTACK DEVELOPER"
+  })
+})
+
+
+
+// CRUD means:
+//Letter 	Meaning	  HTTP Method
+// C	    Create	    POST
+// R	     Read	      GET
+// U	    Update	    PUT
+// D	    Delete 	    DELETE
+let users = [
+  { id: 1, name: "Sameera", role: "Frontend" },
+  { id: 2, name: "Swapna", role: "Backend" }
+];
+app.get("/users",(req,res)=>{
+  res.json(users)
+})
+app.post("/users",(req,res)=>{
+  const newUser = req.body;
+  users.push(newUser)
+  res.send("new user added")
+  console.log(users)
+})
+// Server listens on port 3000 
+app.listen(3000, () => {
+  console.log("Server started on port 3000");
 });
