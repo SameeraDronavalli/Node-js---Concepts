@@ -45,7 +45,7 @@ app.get("/user/:id", (req, res) => {
   res.send(`User ID is ${req.params.id}`);
 });
 
-// Day-7: API route
+// Day-8: API route
 app.get("/api/user",(req,res)=>{
   res.json({
     name:"SAMEERA",
@@ -55,7 +55,7 @@ app.get("/api/user",(req,res)=>{
 
 
 
-// CRUD means:
+// CRUD means: GET & POST Methods
 //Letter 	Meaning	  HTTP Method
 // C	    Create	    POST
 // R	     Read	      GET
@@ -74,6 +74,25 @@ app.post("/users",(req,res)=>{
   res.send("new user added")
   console.log(users)
 })
+
+
+//day 9: PUT & DELETE Methods
+app.put("/users/:id", (req, res) => {
+  const userId = parseInt(req.params.id);
+  const updatedData = req.body;
+
+  const userIndex = users.findIndex(u => u.id === userId);
+
+  if (userIndex === -1) {
+    return res.status(404).send("User not found");
+  }
+
+  users[userIndex] = { ...users[userIndex], ...updatedData };
+
+  res.send("User updated successfully");
+  console.log(users);
+
+});
 // Server listens on port 3000 
 app.listen(3000, () => {
   console.log("Server started on port 3000");
