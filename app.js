@@ -97,3 +97,14 @@ app.put("/users/:id", (req, res) => {
 app.listen(3000, () => {
   console.log("Server started on port 3000");
 });
+
+//day 10
+// Day-10: DELETE Method
+app.delete("/users/:id", (req, res) => {
+  const userId = parseInt(req.params.id);
+
+  users = users.filter(u => u.id !== userId);
+
+  res.send("User deleted successfully");
+  console.log(users);
+});
